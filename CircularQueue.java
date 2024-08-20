@@ -6,7 +6,6 @@ public class CircularQueue<T> {
     private int count;  // Aponta o número de elementos
 
     public CircularQueue(int size) {
-        if (size <= 0) throw new IllegalArgumentException("Size must be positive");
         this.size = size;
         top = -1;
         base = 0;

@@ -5,7 +5,6 @@ public class StaticQueue<T> {
     private final int size;
     private int count;  // Aponta o número de elementos
     public StaticQueue(int size) {
-        if (size <= 0) throw new IllegalArgumentException("Size must be positive");
         this.size = size;
         top = -1;
         base = 0;
