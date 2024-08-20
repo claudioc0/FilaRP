@@ -14,5 +14,17 @@ public class Main {
         circularQueue.remove();
         System.out.println(circularQueue);
 
+        StaticQueue staticQueue = new StaticQueue();
+        staticQueue.add(0);
+        staticQueue.add(1);
+        staticQueue.add(2);
+        staticQueue.add(3);
+        staticQueue.add(4);
+        System.out.println(staticQueue);
+
+        staticQueue.remove();
+        staticQueue.remove();
+        System.out.println(staticQueue);
+
     }
 }

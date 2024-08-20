@@ -1,11 +1,10 @@
-public class CircularQueue<T> {
+public class StaticQueue<T> {
     private int top;
     private int base;
     private T[] data;
     private final int size;
     private int count;  // Aponta o número de elementos
-
-    public CircularQueue(int size) {
+    public StaticQueue(int size) {
         if (size <= 0) throw new IllegalArgumentException("Size must be positive");
         this.size = size;
         top = -1;
@@ -14,13 +13,13 @@ public class CircularQueue<T> {
         count = 0;
     }
 
-    public CircularQueue() {
+    public StaticQueue() {
         this(5);
     }
 
     public void add(T addValue) {
         if (isFull()) {
-            throw new FullQueueException("The queue is full");
+            throw new FullQueueException("A fila está cheia");
         }
         top = (top + 1) % size;
         data[top] = addValue;
@@ -49,7 +48,6 @@ public class CircularQueue<T> {
         return count == 0;
     }
 
-
     public void clear() {
         top = -1;
         base = 0;
@@ -59,14 +57,34 @@ public class CircularQueue<T> {
         }
     }
 
+    // Move os elementos para a posicao da frente
+    public void move(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("O número de posicoes não pode ser negativo");
+        }
+        if (isEmpty()) {
+            return;
+        }
+
+        T[] temp = (T[]) new Object[size];
+        for (int i = 0; i < count; i++) {
+            temp[(i + n) % size] = data[(base + i) % size];
+        }
+        data = temp;
+        base = (base + n) % size;
+        if (base < 0) base += size;
+        top = (base + count - 1) % size;
+    }
+
+    // Convert queue to string representation
     @Override
     public String toString() {
         if (isEmpty()) {
-            return "FIla Circular: []";
+            return "Fila Estárica: []";
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Fila Circular: [");
+        sb.append("Fila Estática: [");
 
         int current = base;
         for (int i = 0; i < count; i++) {
