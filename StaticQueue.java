@@ -76,7 +76,6 @@ public class StaticQueue<T> {
         top = (base + count - 1) % size;
     }
 
-    // Convert queue to string representation
     @Override
     public String toString() {
         if (isEmpty()) {
